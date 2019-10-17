@@ -44,10 +44,24 @@ char ler = meuteclado.waitForKey(); //ler numero pelo keypad
       		if(ler){ //se for lido
       			lcd.setCursor(cursor, 1); //proxima posição do cursor
           		lcd.print('*');
-          		delay(1000);
-          		lcd.clear();
-          		lcd.print("senha incorreta"); //como o primeiro
-              //numero esta errado, senha incorreta
+              	cursor++;//contador para modificar posição do cursor
+      			ler = meuteclado.waitForKey(); // ler numero no keypad
+      			if(ler){ //se for lido
+      				lcd.setCursor(cursor, 1); //proxima posição do cursor
+          			lcd.print('*');
+          			 //como o primeiro
+              		//numero esta errado, senha incorreta
+                  	ler = meuteclado.waitForKey();
+                  	if(ler){
+                      if(ler='#'){
+                        delay(1000);
+          			lcd.clear();
+            		lcd.setCursor(0,0);
+          			lcd.print("senha incorreta");
+                      //servo fechado
+                      }	
+                  }
+                }
         	}
         }
     }else{
@@ -58,11 +72,28 @@ char ler = meuteclado.waitForKey(); //ler numero pelo keypad
           lcd.setCursor(cursor,1);
           if(ler!=senha[1]){
           	lcd.print('*');
-            cursor++;
-            delay(1000);
-          	lcd.clear();
-            lcd.setCursor(0,0);
-          	lcd.print("senha incorreta");
+            cursor++;//contador para modificar posição do cursor
+      		ler = meuteclado.waitForKey(); // ler numero no keypad
+      		if(ler){ //se for lido
+      			lcd.setCursor(cursor, 1); //proxima posição do cursor
+          		lcd.print('*');
+              	cursor++;//contador para modificar posição do cursor
+      			ler = meuteclado.waitForKey(); // ler numero no keypad
+      			if(ler){ //se for lido
+      				lcd.setCursor(cursor, 1); //proxima posição do cursor
+          			lcd.print('*');
+            		ler = meuteclado.waitForKey();
+                  	if(ler){
+                      if(ler='#'){
+                        delay(1000);
+          			lcd.clear();
+            		lcd.setCursor(0,0);
+          			lcd.print("senha incorreta");
+                      //servo fechado
+                      }	
+                  }
+                }
+            }
           }else{
           	lcd.print('*');
       		cursor++;
@@ -71,27 +102,66 @@ char ler = meuteclado.waitForKey(); //ler numero pelo keypad
           		lcd.setCursor(cursor,1);
               	if(ler!=senha[2]){
           			lcd.print('*');
-            		cursor++;
-            		delay(1000);
-          			lcd.clear();
-            		lcd.setCursor(0,0);
-          			lcd.print("senha incorreta");
+					cursor++;//contador para modificar posição do cursor
+      				ler = meuteclado.waitForKey(); // ler numero no keypad
+      				if(ler){ //se for lido
+      					lcd.setCursor(cursor, 1); //proxima posição do cursor
+          				lcd.print('*');
+                      	cursor++;//contador para modificar posição do cursor
+            				
+                          	ler = meuteclado.waitForKey();
+                  			if(ler){
+                      			if(ler='#'){
+                                  delay(1000);
+          					lcd.clear();
+            				lcd.setCursor(0,0);
+          					lcd.print("senha incorreta");
+                          	ler = meuteclado.waitForKey();
+                      				//servo fechado
+                      				
+                  			}
+                        }
+                    }
                 }else{
                 	lcd.print('*');
       				cursor++;
-                  	delay(1000);
-            		lcd.clear();
-          			lcd.print("senha correta");
+                  	ler = meuteclado.waitForKey();
+      				if(ler){
+          				lcd.setCursor(cursor,1);
+              			if(ler!=senha[2]){
+                          	lcd.setCursor(cursor, 1); //proxima posição do cursor
+          					lcd.print('*');
+                      		cursor++;
+                          	ler = meuteclado.waitForKey();
+                          	if(ler){
+                      			if(ler='#'){
+                                  delay(1000);
+            				lcd.clear();
+          					lcd.print("senha correta");
+                      				//servo aberto
+                      				
+                  				}
+                        	}
+                        }
+                    }
                 }
         	}
           }
       	}
     }
   }
+	delay(1000);
+  	ler=meuteclado.waitForKey();
+  	if(ler){
+      lcd.clear();
+      if(ler='*'){
+        lcd.print("Trancar");
+    	}
+   }
+  delay(2000);
+  lcd.clear();
+  cursor=0;
+  lcd.print("Digite sua senha");
 }
-/*
-			delay(1000);
-            lcd.clear();
-          	lcd.print("senha correta");
-*/
+
 
